@@ -1,0 +1,21 @@
+name: Build and deploy on push
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy-gh-pages:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout master Branch
+      uses: actions/checkout@master
+    - name: Build and Deploy
+      uses: JamesIves/github-pages-deploy-action@master
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BUILD_SCRIPT: npm install && npm run-script build
+        CNAME: SITE DOMAIN NAME
+        COMMIT_EMAIL: Your Email
+        COMMIT_NAME: Your Name
+        BRANCH: gh-pages
+        FOLDER: public
