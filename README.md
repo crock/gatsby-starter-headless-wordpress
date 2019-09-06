@@ -1,4 +1,4 @@
-# gatsby-start-headless-wordpress
+# gatsby-starter-headless-wordpress
 
 With this Gatsby.js starter template, you can get up and running quickly and easily with a Gatsby site that pulls database from a WordPress site that you have control over.
 

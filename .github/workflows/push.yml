@@ -14,8 +14,5 @@ jobs:
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BUILD_SCRIPT: npm install && npm run-script build
-        CNAME: SITE DOMAIN NAME
-        COMMIT_EMAIL: Your Email
-        COMMIT_NAME: Your Name
         BRANCH: gh-pages
         FOLDER: public
