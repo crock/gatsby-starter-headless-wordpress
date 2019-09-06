@@ -2,6 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Gatsby`,
     description: `Gatsby + Headless WordPress`,
+    author: `@acrockr`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
