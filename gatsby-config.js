@@ -4,7 +4,8 @@ module.exports = {
   siteMetadata: {
     title: `Gatsby`,
     description: `Gatsby + Headless WordPress`,
-    author: `@acrockr`
+    author: `@acrockr`,
+    siteUrl: `https://gatsby-starter-headless-wp.netlify.com`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
