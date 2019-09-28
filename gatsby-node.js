@@ -52,15 +52,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               }
             }
           }
-        },
-        // allWordpressPage {
-        //   nodes {
-        //     title
-        //     content
-        //     slug
-        //   }
-        //   totalCount
-        // }
+        }
       }
       
       `
