@@ -39,11 +39,11 @@ module.exports = {
         hostingWPCOM: false,
         // does your site use the Advanced Custom Fields Plugin?
         useACF: true,
-        auth: {
-          htaccess_user: process.env.WP_USER,
-          htaccess_pass: process.env.WP_PASS,
-          htaccess_sendImmediately: false,
-        },
+        // auth: {
+        //   htaccess_user: process.env.WP_USER,
+        //   htaccess_pass: process.env.WP_PASS,
+        //   htaccess_sendImmediately: false,
+        // },
         excludedRoutes: []
       }
     },
