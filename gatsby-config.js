@@ -1,8 +1,10 @@
+require('dotenv').config()
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby`,
     description: `Gatsby + Headless WordPress`,
-    author: `@acrockr`,
+    author: `@acrockr`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -37,8 +39,49 @@ module.exports = {
         hostingWPCOM: false,
         // does your site use the Advanced Custom Fields Plugin?
         useACF: true,
+        auth: {
+          htaccess_user: process.env.WP_USER,
+          htaccess_pass: process.env.WP_PASS,
+          htaccess_sendImmediately: false,
+        },
+        excludedRoutes: []
       }
     },
+    {
+      resolve: `gatsby-plugin-google-adsense`,
+      options: {
+        googleAdClientId: "",
+        head: false // Optional
+      }
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "",
+        // Defines where to place the tracking script - `true` in the head and `false` in the body
+        head: false,
+        // Setting this parameter is optional
+        anonymize: true,
+        // Setting this parameter is also optional
+        respectDNT: true,
+        // Avoids sending pageview hits from custom paths
+        exclude: [],
+        // Delays sending pageview hits on route update (in milliseconds)
+        pageTransitionDelay: 0,
+        // Enables Google Optimize using your container Id
+        //optimizeId: "YOUR_GOOGLE_OPTIMIZE_TRACKING_ID",
+        // Enables Google Optimize Experiment ID
+        //experimentId: "YOUR_GOOGLE_EXPERIMENT_ID",
+        // Set Variation ID. 0 for original 1,2,3....
+        //variationId: "YOUR_GOOGLE_OPTIMIZE_VARIATION_ID",
+        // Any additional optional fields
+        sampleRate: 5,
+        siteSpeedSampleRate: 10,
+        cookieDomain: "YOURDOMAIN.LOCAL",
+      },
+    },
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-styled-components`
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

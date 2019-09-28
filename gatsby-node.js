@@ -52,7 +52,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
               }
             }
           }
-        }
+        },
+        // allWordpressPage {
+        //   nodes {
+        //     title
+        //     content
+        //     slug
+        //   }
+        //   totalCount
+        // }
       }
       
       `
@@ -62,7 +70,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       reporter.panicOnBuild(`Error while running GraphQL query.`)
       return
     }
-    // Create pages for each markdown file.
+
+    // Create a blog index
     const blogTemplate = path.resolve(`./src/templates/blog.js`)
     let posts = result.data.allWordpressPost.edges.map(post => post.node)
     createPage({
@@ -73,15 +82,25 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         }
     })
 
+    // Create pages for each WordPress page
+    // const pageTemplate = path.resolve(`./src/templates/page.js`)
+    // _.each(result.data.allWordpressPage.nodes, page => {
+    //   createPage({
+    //       path: `/${page.slug}`,
+    //       component: slash(pageTemplate),
+    //       context: {
+    //           content: page.content,
+    //           name: page.title
+    //       }
+    //   })
+    // })
+
+    // Create posts for each WordPress post
     const postTemplate = path.resolve(`./src/templates/post.js`)
     _.each(result.data.allWordpressPost.edges, edge => {
         createPage({
-            // will be the url for the page
             path: `/blog/${edge.node.slug}`,
-            // specify the component template of your choice
             component: slash(postTemplate),
-            // In the ^template's GraphQL query, 'id' will be available
-            // as a GraphQL variable to query for this posts's data.
             context: {
                 id: edge.node.wordpress_id,
                 title: edge.node.title,
@@ -99,15 +118,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         })
     })
 
+    // Create a user for each WordPress user
     const userTemplate = path.resolve(`./src/templates/user.js`)
     _.each(result.data.allWordpressWpUsers.edges, edge => {
         createPage({
-            // will be the url for the page
             path: `/user/${edge.node.slug}`,
-            // specify the component template of your choice
             component: slash(userTemplate),
-            // In the ^template's GraphQL query, 'id' will be available
-            // as a GraphQL variable to query for this posts's data.
             context: {
                 id: edge.node.wordpress_id,
                 name: edge.node.name,
